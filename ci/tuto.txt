@@ -13,6 +13,11 @@ ARG JAR_FILE=target/spring-configmaps-0.0.1-SNAPSHOT
 ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 
+---------------git ---------------
+git add .
+git commit -m "version 1"
+git push -u origin main  
+
 ---------------Creer une image Docker ---------------
 docker build -t neogicel/spring-configmaps .
 docker tag neogicel/spring-configmaps neogicel/spring-configmaps:1.0 

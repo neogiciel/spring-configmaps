@@ -15,11 +15,12 @@ spec:
       containers:
         - name: spring-configmaps-k8s
           image: neogicel/spring-configmaps:1.0
-# Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 
-
+          envFrom:
+          - configMapRef:
+              name: my-config
 ---
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
@@ -45,7 +46,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /springconfigmaps
         pathType: Prefix
         backend:
           service:
